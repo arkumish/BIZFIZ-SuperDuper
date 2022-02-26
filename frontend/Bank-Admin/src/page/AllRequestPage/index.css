@@ -1,0 +1,18 @@
+.requestPage {
+
+      margin-left: 30px;
+}
+
+a{
+
+    color: #090056;
+    text-decoration: none;
+
+}
+
+.request-list{
+    /* background: url('../../../assets/8432.png') no-repeat top right;
+    background-size: contain;
+    background-size: 600px 400px; */
+    min-height: 500px;
+}

@@ -1,0 +1,78 @@
+{
+  "userFormSubmittedInfo": {
+    "Name": "ZZZZZ",
+    "Phone": "7517058099",
+    "Business Type": "Entertainment",
+    "Business Adress": "A004, OBH, ARMY INSTITUTE OF TECHNOLOGY, ALANDI ROAD,, DIGHI HILLS ,, Pune,, Maharashtra,, pincode: 411015",
+    "Amount Applied": 1234549
+  },
+  "score": 72.6,
+  "allowedCredit": 89628257.39999999,
+  "accountDetails": {
+    "Account Number": "XXXXXXXX9950",
+    "Account Type": "deposit",
+    "Account Email": "needle@gmail.com",
+    "PAN": "ARWPG2764E"
+  },
+  "indicators": [
+    {
+      "name": "Competion Rating",
+      "rating": 68,
+      "competitors": [
+        "valmiki rasan",
+        "happy life generals",
+        "extraSmooth Kirana"
+      ],
+      "remarks": ""
+    },
+    {
+      "name": "Oppurtunity Rating",
+      "rating": 79
+    },
+    {
+      "name": "Sectoral Rating",
+      "rating": 67,
+      "sectors": {
+        "fashion": 40,
+        "hospitality": 51,
+        "jewellery": 87,
+        "entertainment": 67,
+        "daily-essentials": 91
+      },
+      "remark": ""
+    },
+    {
+      "name": "Prosperity Rating",
+      "rating": 84,
+      "moreProsperousAreas": [
+        "kanpur",
+        "prayagraj",
+        "noida"
+      ],
+      "remark": ""
+    },
+    {
+      "name": "Business Feasibility Rating",
+      "rating": 65,
+      "betterAreas": [
+        "Maharashtra",
+        "Punjab"
+      ],
+      "remark": ""
+    }
+  ],
+  "transactionalAnalysis": [
+    {
+      "name": "Online Spends",
+      "value": 30
+    },
+    {
+      "name": "Earns",
+      "value": 50
+    },
+    {
+      "name": "Cash Withdrawl",
+      "value": 20
+    }
+  ]
+}

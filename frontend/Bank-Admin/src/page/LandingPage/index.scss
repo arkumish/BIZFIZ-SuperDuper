@@ -1,0 +1,1073 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* || Color palette */
+$primary-color : #212529;
+$secondary-color : #3FB1B5;
+$page-background-color:#EEEEEE;
+$background-box-solid-color : #cde4e4;
+$box-linear-shade-color :linear-gradient(180deg, rgba(247, 142, 134, 0) 26.98%, #F78E86 100%);
+$box-reverse-linear-shade-color : linear-gradient(180deg, #FE948C 0%, rgba(246, 194, 190, 0) 100%);
+$primary-ultralight: mix(white, $primary-color, 80%);
+$primary-light: mix(white, $primary-color, 25%);
+$primary-dark: mix(black, $primary-color, 25%);
+$primary-ultradark: mix(black, $primary-color, 80%);
+$gray-color:#4F5665;
+
+
+/* || media-queries-breakpoints */
+/* || media-queries-breakpoints */
+@mixin for-phone {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin for-desktop {
+    @media (min-width: 769px) {
+        @content;
+    }
+}
+
+.Landing-Page {
+
+
+    *,
+    *::before,
+    *::after {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        
+    }
+
+    font-family: 'Inter',
+    sans-serif;
+    line-height: 1.6;
+
+    color: black;
+    background-color: $page-background-color;
+    overflow-x: hidden;
+
+    min-height: 100vh;
+
+    img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+    }
+
+
+    a {
+        color: $gray-color;
+        text-decoration: none;
+    }
+
+    //-----------NAVBAR  ---------------
+
+    // || navbar
+
+    .navbar {
+        padding: 10px;
+
+
+        .nav {
+            display: flex;
+            width: 100%;
+            align-items: center;
+
+            li {
+                line-height: 1.6;
+                display: inline;
+                font-size: 18px;
+
+                @include for-phone {
+                    font-size: 14px;
+                }
+            }
+
+            .logo-title::after {
+                content: "Making Lending Easy ";
+                width: 100%;
+                height: 10px;
+                color: black;
+                display: block;
+                font-size: 12px;
+                margin-top: -10px;
+
+                @include for-phone {
+                    font-size: 8px;
+                    margin-top: -6px;
+                }
+
+
+            }
+
+            li:not(:first-child):not(.logo-title) {
+                margin-left: 20px;
+
+                @include for-phone {
+                    margin-left: 8px;
+                }
+            }
+
+            .logo img {
+                width: 50px;
+                margin-left: 16px;
+                margin-top: 15px;
+                border-radius: 50%;
+
+                @include for-phone {
+                    width: 30px;
+                    margin-left: 0;
+                    margin-top: 0;
+                }
+
+            }
+
+            .logo-title {
+                margin: 0 auto 0 0.7em;
+                font-size: 30px;
+                font-weight: 600;
+                padding-top: 0.2em;
+                font-family: 'Josefin Sans';
+
+
+                @include for-phone {
+                    font-size: 18px;
+                    margin: 0 auto 0 0.4em;
+                }
+
+            }
+
+            .nav-button {
+                background-color: $primary-color;
+                padding: 8px 20px;
+                color: white;
+                border-radius: 10px;
+                margin-right: 40px;
+
+
+                a {
+                    color: white;
+                }
+
+                &:hover {
+                    .fa {
+                        transition: .3s all ease-in-out;
+                        transform: translateX(8px);
+                    }
+                }
+
+                @include for-phone {
+                    padding: 4px 10px;
+                    border-radius: 8px;
+                    margin-right: 0px;
+                }
+            }
+
+            li:hover:not(:last-child):not(:first-child):not(.logo-title) {
+                border-bottom: 2px solid black !important;
+                margin-bottom: -2px;
+
+
+                a:hover {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+
+            .action {
+
+                @include for-phone {
+                    font-size: 12px;
+                }
+            }
+
+        }
+
+    }
+
+    //nav-bar end
+
+
+    // ---------------- HEADER--------------
+
+
+    // header
+
+    .header {
+
+        padding: 2rem 0 5rem 0;
+        padding-bottom: 60px;
+        // background: url('../../assets/images/Area_3.svg') left bottom no-repeat;
+        background-size: 100%;
+
+        @include for-desktop {
+            padding-bottom: 100px;
+        }
+
+
+        .header-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+
+
+            .left-section {
+                flex: 50%;
+                margin: 0 1em;
+                padding-left: 20px;
+
+                h1,
+                h2 {
+                    font-family: 'Josefin Sans';
+                    font-weight: 700;
+                    font-size: 60px;
+                    text-transform: capitalize;
+                    line-height: 1.1;
+
+
+                    @include for-phone {
+                        font-size: 3.2rem;
+                        line-height: 1.1;
+                    }
+                }
+
+
+
+
+                .sub-title {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    h2 {
+
+                        font-size: 2.5rem;
+                        padding-top: 13px;
+                        font-weight: 700;
+                        font-size: 35px;
+
+                        @include for-phone {
+                            font-size: 25px;
+                            line-height: 1.0;
+                        }
+                    }
+
+                    .inner {
+
+                        border: 0px solid #ddd;
+                        height: 50px;
+                        line-height: 50px;
+                        font-size: 2.1rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        overflow: hidden;
+
+                        @include for-phone {
+                            font-size: 1.9rem;
+                        }
+
+                        span {
+                            animation: animate 6s ease infinite;
+                            position: relative;
+                            color: $primary-color;
+
+
+                            @keyframes animate {
+
+                                0%,
+                                100% {
+                                    top: 0;
+                                }
+
+                                20% {
+                                    top: 0px;
+                                }
+
+                                25% {
+                                    top: 0px;
+                                }
+
+                                45% {
+                                    top: -50px;
+                                }
+
+                                50% {
+                                    top: -50px;
+                                }
+
+
+
+                                75% {
+                                    top: -100px;
+                                }
+
+                                95% {
+                                    top: -100px;
+                                }
+                            }
+                        }
+                    }
+
+
+
+                }
+
+                p {
+                    color: $gray-color;
+                    margin-top: 10px;
+                    font-size: 1.2rem;
+
+                    @include for-phone {
+                        font-size: 0.8rem;
+                        margin-top: 7px;
+                    }
+                }
+
+                .search {
+                    margin: 2rem auto;
+                    width: 90%;
+                    position: relative;
+                    display: flex;
+
+
+                    @include for-phone {
+                        width: 100%;
+                        font-size: 10px;
+                        flex-wrap: wrap;
+                    }
+
+                    .input-icon-container {
+                        border: 2px black;
+                        display: flex;
+                        width: 100%;
+                        position: relative;
+                        //font-weight: 600;
+                    
+            
+                        .fixed-name {
+                        
+                            position: absolute;
+                            top: 5px;
+                            left: 12px;
+                            z-index: 10;
+                            font-size: inherit;
+                            
+                            @include for-phone{
+                                top:12px;
+                            }
+            
+                        }
+            
+                        .userhandle-icon {
+                            position: absolute;
+                            font-size: 1.8em;
+                            top: 15px;
+                            right: 10px;
+                            cursor: none;
+                            color: #e64a1b;
+                        }
+                    }
+
+                    .searchButton {
+                        margin-left: 2rem;
+                        width: 50%;
+                        min-height: 56px;
+                        padding-top: 5 px;
+                        font-weight: 700;
+                        border: 0;
+                        background: $primary-color;
+                        color: white;
+                        border-radius: 10px;
+                        cursor: pointer;
+                            a{
+                                color:white;
+                            }
+                        outline: none;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            margin: 2px 4px;
+                            display: block;
+                            width: 30%;
+                            height: 36px;
+                            background: $primary-color;
+                            filter: blur(24px);
+
+                            @include for-phone {
+                                width: 100%;
+                            }
+                        }
+
+                        @include for-phone {
+                            margin-top: 10px;
+                            width: 100%;
+                            margin-left: 0;
+
+                        }
+                    }
+                }
+            }
+
+            .right-section {
+                //background: url('../../assets/images/header-image.svg') left bottom no-repeat;
+                img{
+                    width:550px;
+                    height: 400px;
+                }
+
+            }
+        }
+    }//headere-end
+
+
+    section .section-title {
+        text-align: center;
+        color: $primary-color;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    }
+    
+    .what-we-do {
+        overflow-y: hidden;
+        background: $background-box-solid-color;
+        margin-top: -10px;
+        padding-bottom: 20px;
+        @include for-phone{
+            height: 1280px;
+        }
+    }
+    
+    .what-we-do .card {
+        margin-top: 20px;
+        padding: 1rem !important;
+        border: none;
+        margin-bottom: 1rem;
+        -webkit-transition: .5s all ease;
+        -moz-transition: .5s all ease;
+        transition: .5s all ease;
+        height: 90%;
+        background-color: $page-background-color;
+        
+    
+    }
+    
+    .what-we-do .card:hover {
+        -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        border-right: 2px solid $primary-color;
+        
+    }
+    
+    .what-we-do .card .card-block {
+        padding-left: 50px;
+        position: relative;
+        
+        .card-text{
+        font-size: 16px; }
+    }
+    
+    .what-we-do .card .card-block a {
+        color: #007b5e !important;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    
+    .what-we-do .card .card-block a i {
+        display: none;
+    
+    }
+    
+    .what-we-do .card:hover .card-block a i {
+        display: inline-block;
+        font-weight: 700;
+    
+    }
+    
+    .what-we-do .card .card-block:before {
+        font-family: FontAwesome;
+        position: absolute;
+        font-size: 39px;
+        color: $primary-color;
+        left: 0;
+        -webkit-transition: -webkit-transform .2s ease-in-out;
+        transition: transform .2s ease-in-out;
+    }
+    
+    .what-we-do .card .block-1:before {
+        content: "\f073";
+    }
+    
+    .what-we-do .card .block-2:before {
+        content: "\f03d";
+    }
+    
+    .what-we-do .card .block-3:before {
+        content: "\f199";
+    }
+    
+    .what-we-do .card .block-4:before {
+        content: "\f09d";
+    }
+    
+    .what-we-do .card .block-5:before {
+        content: "\f0a1";
+    }
+    
+    .what-we-do .card .block-6:before {
+        content: "\f218";
+    }
+    
+    .what-we-do .card:hover .card-block:before {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        -webkit-transition: .5s all ease;
+        -moz-transition: .5s all ease;
+        transition: .5s all ease;
+    }
+    
+    .do-new {
+        overflow-y: hidden;
+        .title {
+            margin-top: 30px;
+            text-align: center;
+    
+    
+            h2 {
+                font-size: 3em;
+                color: $primary-color;
+    
+                @include for-phone {
+                    font-size: 30px;
+                }
+            }
+    
+            padding: 10px 0 30px 0;
+        }
+    
+        
+        .about-container {
+            overflow-y: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+    
+        }
+    
+        .about-container .card {
+            position: relative;
+            background-color: $page-background-color;
+            border-width: 0.1;
+            text-align: center;
+    
+    
+            .step-indicator {
+                text-align: center;
+                font-weight: 700;
+                font-size: 30px;
+                padding-top: 20px;
+                margin-bottom: -70px;
+                color: #4F5665
+            }
+    
+        }
+    
+        .about-container .card .face {
+            width: 300px;
+            height: 200px;
+            transition: 0.5s;
+            margin: auto;
+             
+            .content-text p{
+                font-size: 15px;
+            }
+         
+        }
+    
+        .about-container .card .face.face1 {
+            position: relative;
+            background: $primary-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            transform: translateY(100px);
+    
+        }
+    
+        .about-container .card:hover .face.face1 {
+            background: $primary-color;
+            transform: translateY(0px);
+    
+        }
+    
+        .about-container .card .face.face2 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: $page-background-color;
+            box-sizing: border-box;
+            box-shadow: 10px 17px 9px -4px rgb(158, 158, 158);
+            ;
+            transform: translateY(-100px);
+        }
+    
+        .about-container .card:hover .face.face2 {
+            transform: translateY(0px);
+        }
+    
+        .about-container .card .face.face2 .content p {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .about-container .card .face.face1 .content {
+            opacity: 0.9;
+            transition: 0.5s;
+    
+            img {
+                width: 140px;
+                margin: auto;
+    
+            }
+        }
+    
+        .about-container .card:hover .face.face1 .content {
+            opacity: 1;
+        }
+    
+        .about-container .card .face.face1 .content h3 {
+            color: #fff;
+            margin: 10px 0px 0px;
+            text-align: center;
+            font-weight: 400;
+            bottom: 0;
+    
+        }
+    
+    }
+
+    //v space
+
+.video-space{
+    background-color: $background-box-solid-color;
+    border-radius: 50px 0px 0px 50px;
+    
+    width: 100%;
+    margin-left: 8%;
+    margin-top: 80px;
+
+    @include for-phone{
+        margin-left: 0;
+        border-radius: 0;
+    }
+
+    .title{
+        text-align: center;
+        font-size: 40px;
+        color: $primary-color;
+        margin-bottom: 25px;
+
+        @include for-phone {
+            font-size: 30px;
+
+        }
+    }
+
+    .video-row{
+   @include for-phone{
+       height: 200px;
+       width: 100%;
+    margin: 0 auto;
+   }
+
+        .boy{
+            left: 0px;
+            bottom: 80px;
+           
+            z-index: 10;
+    
+            padding-left: 25px;
+    
+            @include for-phone {
+                display: none;
+            }
+        }
+
+        .video-container{
+            
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        // padding-top: 56.25%;
+        // padding-bottom: 0px;
+        /* Aspect Ratio */
+
+
+
+
+
+        @include for-phone {
+            width: 100%;
+            border-radius: 0;
+
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 80%;
+            height: 80%;
+            border: none;
+           
+
+
+            @include for-phone {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        }
+    }
+}
+
+
+    // FOOTER 
+
+footer {
+    margin-top: 10%;
+    border-top: 6px solid $primary-color;
+    padding: 90px 0;
+
+    .footer-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Josefin Sans';
+
+        img {
+            width: 100px;
+
+            margin-bottom: 30px;
+        }
+
+        .logo-title {
+            text-decoration: underline;
+            text-align: center;
+        }
+    }
+
+
+    // .footer-container {
+    //     max-width: 1300px;
+    //     margin: auto;
+    //     padding: 0 20px;
+    //     display: flex;
+    //     justify-content: space-between;
+    //     flex-wrap: wrap-reverse;
+
+    .left-col {
+        h1 {text-align: left;
+            font-size: 26px;
+
+            @include for-phone{
+                margin-top:20px;
+            }
+        }
+
+        .border {
+            width: 100px;
+            height: 4px;
+            background: $primary-color;
+        }
+        @include for-desktop {
+            margin-left: -20px;
+        }
+    }
+
+    .social-media {
+        margin: 20px 0;
+
+        a {
+            color: #001a21;
+            margin-right: 25px;
+            font-size: 22px;
+            text-decoration: none;
+            transition: .3s linear;
+
+            &:hover {
+                color: $primary-color;
+            }
+
+            .fa {
+                font-size: 30px;
+            }
+        }
+    }
+
+    .right-col {
+        h1 {
+            font-size: 26px;
+        }
+
+        .border {
+            width: 100px;
+            height: 4px;
+            background: $primary-color;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+
+
+            flex-wrap: wrap;
+        }
+
+
+    }
+
+}
+
+
+
+textarea {
+    resize: none;
+}
+
+
+
+.txtb {
+    font-size: 16px;
+    width: 100%;
+    border: 2px solid $primary-color;
+    padding: 5px 5px 5px 15px;
+    height: 3rem;
+    border-radius: 10px;
+    outline: none;
+    background-color: $page-background-color;
+    color: $gray-color;
+
+    &:focus {
+        color: #101111;
+    }
+
+    @include for-phone {
+        font-size: 12px;
+        width: 100%;
+    }
+}
+
+.txtarea {
+    margin: 10px auto;
+    width: 100%;
+    height: 80px;
+
+}
+
+
+.btnf {
+
+
+    width: 100%;
+    height: 3rem;
+    padding-top: 5 px;
+    font-weight: 700;
+    border: 0;
+    background: $primary-color;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+
+    align-self: flex-end;
+    outline: none;
+    transition: opacity .3s linear;
+
+    @include for-desktop {
+        &::after {
+            content: '';
+            position: absolute;
+            margin: 2px 4px;
+            display: block;
+            width: 90%;
+            height: 36px;
+            background: $primary-color;
+            filter: blur(24px);
+
+        }
+    }
+
+}
+
+
+.page-content {
+    min-height: 100vh;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width:960px) {
+
+
+    .right-col {
+        width: 100%;
+        margin-bottom: 60px;
+    }
+
+    .left-col {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width:700px) {
+    .btnf {
+        margin: 0;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+
+.mail-info {
+    width: 70%;
+    font-family: Nunito, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 16px 26px;
+    border-radius: 8px;
+    background: $page-background-color;
+    letter-spacing: 0.3px;
+    box-shadow: 0px 12px 17px rgba(0, 0, 0, 0.26);
+    font-weight: 600;
+
+    @include for-phone {
+        width: 100%;
+        margin-bottom: 60px;
+    }
+}
+
+
+.mail-text {
+    font-size: 16px;
+}
+
+[tooltip] {
+    position: relative;
+}
+
+[tooltip]::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px 6px 0 6px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    opacity: 0;
+    transition: all 250ms ease;
+}
+
+[tooltip]::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    transform: translateX(-50%) translateY(-100%);
+    background: #fff;
+    text-align: center;
+    color: #00afda;
+    padding: 4px 8px;
+    font-size: 14px;
+    min-width: 80px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 250ms ease;
+}
+
+[tooltip-position='bottom']::before {
+    top: 100%;
+    margin-top: 36px;
+    transform: translateX(-50%) translatey(-100%) rotate(-180deg)
+}
+
+[tooltip-position='bottom']::after {
+    top: 100%;
+    margin-top: 36px;
+    transform: translateX(-50%) translateY(0);
+}
+
+[tooltip]:hover::after,
+[tooltip]:hover::before {
+    opacity: 1;
+}
+
+
+
+
+//  
+
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+}
+
+//LP class-end
