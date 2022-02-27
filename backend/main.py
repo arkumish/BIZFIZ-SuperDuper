@@ -15,11 +15,13 @@ import enum
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+from ratings import competitor_analysis, oppurtunity_rating, sectoral_analysis, relative_prosperity, ease_of_business
+
 app = FastAPI()
 
-BORROWER_CLIENT_URL = "http://localhost:5000"
+BORROWER_CLIENT_URL = "https://bizfiz-lending-application.netlify.app/"
 
-MONGODB_URL = "<DATABASE_URL>"
+MONGODB_URL = "mongodb+srv://wecode:wecode2022@cluster0.wwgu6.mongodb.net/test?retryWrites=true&w=majority"
 client = pymongo.MongoClient(MONGODB_URL)
 db = client['hackathon']
 
@@ -51,121 +53,8 @@ class ApplicationStatus(enum.Enum):
     halted = 2
     rejected = 3
 
-def create_data_session(consent_id):
-    url = "https://fiu-uat.setu.co/sessions"
-
-    payload = json.dumps({
-    "consentId": consent_id,
-    "DataRange": {
-        "from": "2022-01-01T00:00:00.000Z",
-        "to": "2022-02-15T00:00:00.000Z"
-    },
-    "format": "json"
-    })
-    headers = {
-    'x-client-id': '72cc3cc4-2dcd-4cde-949b-26eebf09abc6',
-    'x-client-secret': '3500bfaa-9af9-4a31-988d-d9e3c5b0b288',
-    'Content-Type': 'application/json'
-    }
-
-    response = requests.request("POST", url, headers=headers, data=payload)
-    sessionId = response.json()['id']
-    # Hit data session api and return session id
-    return sessionId
-
-def fetch_and_save_session_data(userid, sessionid):
-
-    url = f"https://fiu-uat.setu.co/sessions/{sessionid}"
-
-    payload={}
-    headers = {
-    'x-client-id': '72cc3cc4-2dcd-4cde-949b-26eebf09abc6',
-    'x-client-secret': '3500bfaa-9af9-4a31-988d-d9e3c5b0b288'
-    }
-
-    response = requests.request("GET", url, headers=headers, data=payload)
-    session_status = response.json()['status']
-
-    if session_status == "COMPLETED":
-        # print("*"*20)
-        payload = response.json()['Payload'][0]
-        # print(payload['data'][0])
-        account_details = payload['data'][0]['decryptedFI']['account']
-        # print(account_details)
-        obj = {
-            'userid':userid,
-            'accountDetails':account_details
-        }
-        result = db['financialData'].insert_one(obj)
-        return {'status': session_status,'db_inserted_id' :result.inserted_id}
-    
-    else:
-        return {'status':session_status}
-    # return None
-
-def competitor_analysis(pincode, typeOfBusiness):
-    # To-Do : google and make area wise json. are(pincode) = 5, competitor in area = 3 of each segment.
-    # To-Do : if possible then Google MAP search and result for any pincode
-    defaultObj = {
-        'name':'Competition Score',
-        'rating': 74,
-        'competitors' : ['valmiki rasan', 'happy life generals', 'extraSmooth Kirana'],
-        'remarks':''
-    }  
-    return defaultObj
-
-def oppurtunity_rating(state,businessDistrict):
-    q4_hoverdata_for_state = pd.read_json(f"pulsedata/map/user/hover/country/india/state/{state}/2021/3.json")
-    hoverdata = q4_hoverdata_for_state['data']['hoverData']
-    # print(hoverdata)
-    appOpenIsToRegUserRatio = []
-    for district in hoverdata:
-        appOpenIsToRegUserRatio.append({'district':district[:district.find('district')-1],'ratio':(hoverdata[district]['appOpens']/hoverdata[district]['registeredUsers'])})
-    sorted_list = sorted(appOpenIsToRegUserRatio, key = lambda i: i['ratio'])
-    # print(sorted_list)
-    district_index = next((index for (index, d) in enumerate(sorted_list) if d["district"] == businessDistrict), None)
-    oppurtunity_rating = 1-(district_index/len(sorted_list))
-    obj ={
-        'name':'Opportunity Score',
-        'rating': round(oppurtunity_rating*100,2)
-    }
-    return obj
-
-def sectoral_analysis(typeOfBusiness):
-    #To-Do : check online if this sector is booming.
-    sector_boom_ratings = {'fashion':40,'hospitality':51,'jewellery':87,'entertainment':67,'daily-essentials':91}
-    defaultObj={
-        'name': 'Sectoral Score',
-        "rating": sector_boom_ratings[typeOfBusiness],
-        "sectors":sector_boom_ratings,
-        "remark":''
-    }
-    return defaultObj
-
-def relative_prosperity(state,district):
-
-    #To-Do : a) Extract pincode%1000 pincodes b) check percentile. c) scale should be in 20-90 range.
-    defaultObj = {
-        'name':'Prosperity Score',
-        'rating':84,
-        'moreProsperousAreas': ['kanpur','prayagraj','noida'],
-        'remark':''
-    }
-    return defaultObj
-
-def ease_of_business(pincode, state):
-    #To-Do : % of merchant payment in state as compared to merchant-payment in country
-    defaultObj = {
-        'name':'Ease of business Score',
-        'rating':65,
-        'betterAreas' : ['Maharashtra','Punjab'],
-        'remark':''
-    }
-    return defaultObj
-
-def transaction_analysis(useId):
-    defaultObj = [{'name':'Online Spends','value':30},{'name':'Earns','value':50},{'name':'Cash Withdrawl', 'value':20}]
-    return defaultObj
+SETU_CLIENT_ID = '6c98fc44-a91a-4fc1-affe-966a3886a4cc'
+SETU_CLIENT_SECRET = 'fd437fd6-7284-4fbc-b40d-33c2b4091bdc'
 
 def get_consent(mobileNumber, userid):
     url = "https://fiu-uat.setu.co/consents"
@@ -217,17 +106,75 @@ def get_consent(mobileNumber, userid):
         "DEPOSIT"
         ]
     },
-    "redirectUrl": f"{BORROWER_CLIENT_URL}/confirmscreen/{userid}"
+    "redirectUrl": f"{BORROWER_CLIENT_URL}/approved/{userid}"
     })
     headers = {
-    'x-client-id': '72cc3cc4-2dcd-4cde-949b-26eebf09abc6',
-    'x-client-secret': '3500bfaa-9af9-4a31-988d-d9e3c5b0b288',
+    'x-client-id': SETU_CLIENT_ID,
+    'x-client-secret': SETU_CLIENT_SECRET,
     'Content-Type': 'application/json'
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
     print(response.json())
     return(response.json())
+
+def create_data_session(consent_id):
+    url = "https://fiu-uat.setu.co/sessions"
+
+    payload = json.dumps({
+    "consentId": consent_id,
+    "DataRange": {
+        "from": "2022-01-01T00:00:00.000Z",
+        "to": "2022-02-15T00:00:00.000Z"
+    },
+    "format": "json"
+    })
+    headers = {
+    'x-client-id': SETU_CLIENT_ID,
+    'x-client-secret': SETU_CLIENT_SECRET,
+    'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    sessionId = response.json()['id']
+    # Hit data session api and return session id
+    return sessionId
+
+def fetch_and_save_session_data(userid, sessionid):
+
+    url = f"https://fiu-uat.setu.co/sessions/{sessionid}"
+
+    # print(url,"##########################")
+
+    headers = {
+    'x-client-id': SETU_CLIENT_ID,
+    'x-client-secret': SETU_CLIENT_SECRET
+    }
+
+    response = requests.request("GET", url, headers=headers)
+    print(response)
+    session_status = response.json()['status']
+
+    if session_status == "COMPLETED":
+        # print("*"*20)
+        payload = response.json()['Payload'][0]
+        # print(payload['data'][0])
+        account_details = payload['data'][0]['decryptedFI']['account']
+        # print(account_details)
+        obj = {
+            'userid':userid,
+            'accountDetails':account_details
+        }
+        result = db['financialData'].insert_one(obj)
+        return {'status': session_status,'db_inserted_id' :result.inserted_id}
+    
+    else:
+        return {'status':session_status}
+    # return None
+
+def transaction_analysis(useId):
+    defaultObj = [{'name':'Online Spends','value':30},{'name':'Earns','value':50},{'name':'Cash Withdrawl', 'value':20}]
+    return defaultObj
 
 @app.get('/') # instead of app.route
 def index():
@@ -237,6 +184,8 @@ def index():
 def add_borrower(borrower: BorrowerModel = Body(...)):
     # Business PIN Code is important.......take it seperately
     borrower = jsonable_encoder(borrower)
+    borrower['businessState']  = borrower['businessState'].lower()
+    borrower['businessDistrict']  = borrower['businessDistrict'].lower()
     result = db["borrowers"].insert_one(borrower)
     userid = result.inserted_id
     print("*"*10,userid,"*"*10)
@@ -275,11 +224,12 @@ def get_all_application():
 def get_data_session(userid : str):
     borrower = db['borrowers'].find_one({'_id':ObjectId(userid)})
     consentId = borrower['consentId']
-    # print("consentId fetched", consentId)
-    time.sleep(7)
-    sessionId = create_data_session(consentId)
-    db["borrowers"].update_one({"_id":ObjectId(userid)},{"$set":{"sessionId":sessionId}})
     time.sleep(5)
+    # print("consentId fetched", consentId)
+    sessionId = create_data_session(consentId)
+    print(sessionId,"**********************")
+    db["borrowers"].update_one({"_id":ObjectId(userid)},{"$set":{"sessionId":sessionId}})
+    time.sleep(30)
     res = fetch_and_save_session_data(userid,sessionId)
     if res['status'] == "COMPLETED":
         return {"msg":"successfully fetched and saved data"}
