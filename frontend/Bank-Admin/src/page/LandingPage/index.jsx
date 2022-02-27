@@ -69,8 +69,8 @@ const LandingPage = ({ handleAvailabilty, FetchHandleAvailabilty }) => {
              
 
         
-              <Button className="searchButton" onClick={()=>{  window.open("http://localhost:5000/");}}>
-               <a target="_blank" href={"http://localhost:5000/"}>Open Lending Form -></a>  
+              <Button className="searchButton" onClick={()=>{  window.open("https://bizfiz-lending-application.netlify.app/");}}>
+               <a target="_blank" href={"https://bizfiz-lending-application.netlify.app/"}>Open Lending Form -></a>  
               </Button>
             </div>
           </div>

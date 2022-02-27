@@ -13,6 +13,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
 import { green, pink,red,yellow } from '@mui/material/colors';
+import './index.css'
 const parseDate = (str) => {
     let dt = new Date(str);
     return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
@@ -26,6 +27,8 @@ const statusSwitch = (status) => {
             return <Avatar sx={{ bgcolor: red[200] }}><CloseIcon /></Avatar>
         case 0:
             return <Avatar sx={{ bgcolor: yellow[800] }}><CircleIcon /></Avatar>
+        case 3:
+            return <Avatar sx={{ bgcolor: yellow[800] }}><CircleIcon /></Avatar>
         default:
             return 'Pending';
     }
@@ -33,7 +36,7 @@ const statusSwitch = (status) => {
 
 const SingleList = ({name,mobile,date,status}) => {
     return (<>
-    <Box mb={1} ml={2} pt={1}>
+    <Box mb={1} ml={2} pt={1} style={{ flexWrap: 'wrap'}}>
     <Paper elevation={3}>
         <ListItem alignItems="flex-start" >
             <ListItemAvatar>

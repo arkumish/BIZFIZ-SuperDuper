@@ -40,7 +40,8 @@ class ConfirmationScreen extends Component {
         <br/>
         <br/>
         <RaisedButton label={this.state.btnText} onClick={this.handleClick} primary />
-        <p>After Submitting. Please Wait for a bit. This step may take some time.</p>
+        <p>After Submitting. Please Wait for a bit. This step may take some time. (10-20 seconds)</p><br/>
+        <p>Also Post Submission, your application will under review for Bank Admin</p>
       </div>
     );
   }

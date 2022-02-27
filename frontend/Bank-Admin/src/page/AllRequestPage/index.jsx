@@ -21,10 +21,10 @@ const AllRequestPage = () => {
             .then((res) => {
                 console.log(res.data)
                     let first = res.data.filter((item)=>{
-                        return item.applicationStatus == 0
+                        return item.applicationStatus == 0 || item.applicationStatus == 3
                     })
                     let second = res.data.filter((item)=>{
-                        return item.applicationStatus !== 0
+                        return item.applicationStatus == 1 || item.applicationStatus == 2
                     })
 
                     console.log(first, second)

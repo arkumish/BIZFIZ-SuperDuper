@@ -195,7 +195,7 @@ const MainBox = ({ piedata, score, credit }) => {
                         <Grid container>
                             <Grid item sm={12}>
                                 <Box display="flex" justifyContent="flex-end">
-                                    <Pdf targetRef={ref} options={options} filename="code-example.pdf">
+                                    <Pdf targetRef={ref} options={options} filename="bizfiz-report.pdf">
                                         {({ toPdf }) => <Button variant="contained" className="btn btn-primary" size="small" onClick={toPdf}>Generate Pdf</Button>}
                                     </Pdf>
 
@@ -316,7 +316,7 @@ const FullReport = ({ reportData,reportId }) => {
         
         axios.get(apiUrl)
             .then((res)=>{
-                    window.location='/'
+                    window.location='/all-report'
             })
             .catch((err)=>{
                 window.alert('unable to update');
@@ -332,7 +332,7 @@ const FullReport = ({ reportData,reportId }) => {
         console.log(apiUrl);
         axios.get(apiUrl)
             .then((res)=>{
-                    window.location='/'
+                    window.location='/all-report'
             })
             .catch((err)=>{
                 window.alert('unable to update');
@@ -348,7 +348,7 @@ const FullReport = ({ reportData,reportId }) => {
         console.log(apiUrl);
         axios.get(apiUrl)
             .then((res)=>{
-                    window.location='/'
+                    window.location='/all-report'
             })
             .catch((err)=>{
                 window.alert('unable to update');
